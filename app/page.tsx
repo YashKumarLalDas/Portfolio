@@ -3,6 +3,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import Image from "next/image";
+import { TypeAnimation } from "react-type-animation";
 import { Button } from "./components/Button";
 import { ClientOnly } from "./components/ClientOnly";
 import { Tooltip } from "./components/Tooltip";
@@ -309,7 +310,13 @@ const projects = [
   {
     title: "AWS Serverless Activity Ingestion",
     description:
-      "Serverless ingestion pipeline on AWS with fan-out writes to RDS (MySQL), DynamoDB, and S3; built for idempotency, observability, and least-privilege access.",
+      (<>
+        <strong>Problem:</strong> Needed scalable processing for high-volume activity data.
+        <br/>
+        <strong>Solution:</strong> Built event-driven AWS Lambda pipeline writing to RDS, DynamoDB, and S3 with logging and monitoring.
+        <br/>
+        <strong>Result:</strong> Delivered a fault-tolerant ingestion system handling burst traffic reliably.
+      </>),
     link: "https://github.com/YashKumarLalDas/aws-serverless-activity-ingestion",
     additionalLink: {
       text: "AWS ARCHITECTURE Diagram",
@@ -320,7 +327,13 @@ const projects = [
   {
     title: "Kubernetes Observability & Auto-Scaling Platform",
     description:
-      "Kubernetes platform demonstrating metrics, dashboards, autoscaling, and self-healing validated via load tests and failure simulations.",
+      (<>
+        <strong>Problem:</strong> Services lacked visibility and required manual scaling.
+        <br/>
+        <strong>Solution:</strong> Implemented Prometheus, Grafana, and HPA with load and failure testing.
+        <br/>
+        <strong>Result:</strong> Achieved automated scaling and improved system reliability.
+      </>),
     link: "https://github.com/YashKumarLalDas/kubernetes-observability-reliability-platform",
     additionalLink: {
       text: "Prometheus Latency Graph",
@@ -331,7 +344,13 @@ const projects = [
   {
     title: "Secure AWS VPC 2-Tier Architecture",
     description:
-      "Secure 2-tier VPC with public/private subnets, routing controls, and layered network security validated with reachability tests.",
+      (<>
+        <strong>Problem:</strong> Required secure cloud network segmentation and controlled access.
+        <br/>
+        <strong>Solution:</strong> Designed public/private VPC with NAT, routing controls, and layered security.
+        <br/>
+        <strong>Result:</strong> Established isolated, secure architecture validated through testing.
+      </>),
     link: "https://github.com/YashKumarLalDas/VPC-Architecture-with-Public-and-Private-Subnets-2-Tier-Setup-",
     additionalLink: {
       text: "VPC Architecture Diagram",
@@ -342,7 +361,13 @@ const projects = [
   {
     title: "AI-Powered Project Planning Platform (PartyRock/Bedrock)",
     description:
-      "AI-assisted workflow that generates structured project plans from user inputs with consistent formatting and validated sample outputs.",
+      (<>
+        <strong>Problem:</strong> Manual planning was slow and inconsistent.
+        <br/>
+        <strong>Solution:</strong> Used Amazon Bedrock to generate structured project plans from prompts.
+        <br/>
+        <strong>Result:</strong> Reduced planning time and improved documentation consistency.
+      </>),
     link: "https://github.com/YashKumarLalDas/projectflow-ai-pm",
     additionalLink: {
       text: "Live Demo",
@@ -353,7 +378,13 @@ const projects = [
   {
     title: "AWS S3 Static Website Hosting",
     description:
-      "Static site hosted on S3 with CloudFront and Route 53; validated for availability and caching behavior with documented setup.",
+      (<>
+        <strong>Problem:</strong> Needed fast, globally available static hosting.
+        <br/>
+        <strong>Solution:</strong> Deployed S3 + CloudFront with Route 53 and HTTPS via ACM.
+        <br/>
+        <strong>Result:</strong> Delivered a highly available, globally cached website.
+      </>),
     link: "https://github.com/YashKumarLalDas/AWS-S3-Static-Website-Hosting",
     additionalLink: {
       text: "Deployment Screenshot",
@@ -364,7 +395,13 @@ const projects = [
   {
     title: "Secure Windows EC2 Provisioning & RDP",
     description:
-      "Hardened Windows EC2 provisioning with restricted RDP access and documented security controls for safe remote administration.",
+      (<>
+        <strong>Problem:</strong> Required secure remote administration of Windows servers.
+        <br/>
+        <strong>Solution:</strong> Configured EC2 with restricted RDP, IAM controls, and hardening steps.
+        <br/>
+        <strong>Result:</strong> Enabled secure cloud-based Windows management.
+      </>),
     link: "https://github.com/YashKumarLalDas/aws-ec2-windows-rdp-lab",
     additionalLink: {
       text: "Windows Server Screenshot",
@@ -662,7 +699,7 @@ const ProjectsDisplay: React.FC = () => {
             className="rounded-2xl bg-white/5 border border-white/10 p-4 backdrop-blur-sm hover:bg-white/10 transition"
           >
             <h3 className="text-lg font-semibold text-cyan-400 mb-2">{p.title}</h3>
-            <p className="text-gray-300 text-sm mb-3 line-clamp-2">{p.description}</p>
+            <p className="text-gray-300 text-sm mb-3 whitespace-pre-wrap">{p.description}</p>
             <div className="flex flex-wrap gap-1.5 mb-3">
               {p.tech.map((t, j) => (
                 <span
@@ -778,7 +815,16 @@ export default function Portfolio() {
                 transition={{ duration: 0.6 }}
                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
               >
-                Hi, I'm <span className="text-cyan-400">Yash</span>
+                <TypeAnimation
+                  sequence={[
+                    200,
+                    "Hi, I'm Yash Kumar.",
+                    2000,
+                  ]}
+                  speed={65}
+                  cursor={false}
+                  repeat={0}
+                />
               </motion.h1>
 
               <motion.div
@@ -852,24 +898,16 @@ export default function Portfolio() {
           <h2 className="text-2xl md:text-3xl font-bold text-cyan-400 mb-5">About</h2>
           <GlassCard className="p-4">
             <p className="text-gray-100 font-semibold text-sm leading-relaxed mb-3">
-              I'm a Software Engineer with 3+ years of experience building and supporting production-grade systems using Python, cloud infrastructure, and DevOps practices.
+              I'm a cloud and DevOps-focused engineer with 3+ years of hands-on experience supporting and improving production-grade systems in 24×7 environments. My background combines Linux operations, Python automation, cloud infrastructure, and reliability engineering practices.
             </p>
-            <ul className="space-y-2 mb-3 text-gray-300 text-sm leading-snug">
-              <li className="flex gap-2">
-                <span className="text-cyan-400 flex-shrink-0 mt-0.5">•</span>
-                <span>Supported 24×7 production systems for a global aviation client at TCS, triaging 150+ alerts/month, analyzing logs, and driving incident response in distributed Linux environments with ~98% SLA.</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="text-cyan-400 flex-shrink-0 mt-0.5">•</span>
-                <span>Built automation and reporting workflows at UNT Libraries using internal analytics tools, improving operational efficiency and data accuracy.</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="text-cyan-400 flex-shrink-0 mt-0.5">•</span>
-                <span>Developed hands-on engineering projects on GitHub including AWS serverless backends, Kubernetes observability platforms, and secure cloud architectures.</span>
-              </li>
-            </ul>
-            <p className="text-gray-300 leading-relaxed">
-              I'm seeking software engineering roles that combine backend development, cloud systems, and automation.
+            <p className="text-gray-300 text-sm leading-relaxed mb-3">
+              I have worked extensively with monitoring, alert triage, incident response, and root-cause analysis in distributed systems. I focus on building observable, scalable, and resilient infrastructure using AWS services, Terraform, Kubernetes, and CI/CD pipelines.
+            </p>
+            <p className="text-gray-300 text-sm leading-relaxed mb-3">
+              In addition to operations, I build practical engineering projects involving serverless architectures, Kubernetes observability, and secure cloud networking to deepen my platform and automation expertise.
+            </p>
+            <p className="text-cyan-300 font-semibold text-sm leading-relaxed mb-3">
+              Open to Junior Cloud, DevOps, Linux, and Platform Engineering opportunities.
             </p>
             <div className="grid md:grid-cols-2 gap-4 mt-6">
               <div className="p-4 rounded-xl bg-white/5 border border-white/10">
